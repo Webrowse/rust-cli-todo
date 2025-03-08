@@ -25,6 +25,17 @@ fn load_tasks_from_file(path: &str) -> io::Result<Vec<Task>> {
     Ok(tasks)
 }
 
+fn save_tasks_to_file(path: &str, tasks: &Vec<Task>) -> io::Result<()> {
+    let content = tasks
+        .iter()
+        .map(|task| format!("{}|{}", task.completed as u8, task.description))
+        .collect::<Vec<String>>()
+        .join("\n");
+
+    fs::write(path, content)?;
+
+    Ok(())
+}
 
 
 
