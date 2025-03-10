@@ -9,54 +9,6 @@ struct Task {
     completed: bool,
 }
 
-// fn load_tasks_from_file(path: &str) -> io::Result<Vec<Task>> {
-//     let content = fs::read_to_string(path).unwrap_or_else(|_| "".to_string());
-//     let mut tasks = Vec::new();
-
-//     for line in content.lines() {
-//         let parts: Vec<&str> = line.split('|').collect();
-//         if parts.len() == 2 {
-//             let completed = parts[0] == "1";
-//             let description = parts[1].to_string();
-//             tasks.push(Task { description, completed });
-//         }
-//     }
-
-//     Ok(tasks)
-// }
-
-// fn save_tasks_to_file(path: &str, tasks: &Vec<Task>) -> io::Result<()> {
-//     let content = tasks
-//         .iter()
-//         .map(|task| format!("{}|{}", task.completed as u8, task.description))
-//         .collect::<Vec<String>>()
-//         .join("\n");
-
-//     fs::write(path, content)?;
-
-//     Ok(())
-// }
-
-// fn read_tasks_from_file(path: &str) -> io::Result<Vec<Task>> {
-//     let content = fs::read_to_string(path)?;
-
-//     if content.is_empty() {
-//         return Ok(vec![]); // Return an empty list if file is empty
-//     }
-
-//     let tasks = content
-//         .lines()
-//         .map(|line| {
-//             let parts: Vec<&str> = line.split('|').collect();
-//             Task {
-//                 completed: parts[0] == "1",
-//                 description: parts[1].to_string(),
-//             }
-//         })
-//         .collect();
-
-//     Ok(tasks)
-// }
 
 fn mark_task_complete(path: &str, task_number: usize) -> io::Result<()> {
     let content = fs::read_to_string(path)?;
